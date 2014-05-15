@@ -1,4 +1,12 @@
-//---------------------------------------------------------------------------
+//********************************//
+//    COMPONENTES DEL GRUPO:      //
+//                                //
+//    Marina Bezares Alvarez      //
+//    Clara Antolin Garcia        //
+//                                //
+//********************************//
+
+
 #include <vcl.h>
 #pragma hdrstop
 
@@ -55,6 +63,11 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
     GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
 
+    // Modos iluminación
+    luzAmbiente = false;
+    luzLampara = false;
+    luzRemota = false;
+    niebla = false;
 
     //Para los giros de camara
     indZ = indY = indX = 0; ladosGiros = 75;
@@ -165,10 +178,12 @@ void __fastcall TGLForm3D::FormPaint(TObject *Sender) {
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::FormDestroy(TObject *Sender) {
+
     liberarObjetosEscena();
     ReleaseDC(Handle,hdc);
-    wglMakeCurrent(NULL,NULL);
+    wglMakeCurrent(NULL,NULL);                                              
     wglDeleteContext(hrc);
+
 }
 
 //---------------------------------------------------------------------------
@@ -378,4 +393,27 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
 
 
 
+void __fastcall TGLForm3D::LuzAmbienteClick(TObject *Sender)
+{
+     luzAmbiente = !luzAmbiente;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::LuzLamparaClick(TObject *Sender)
+{
+     luzLampara = !luzLampara;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::LuzRemotaClick(TObject *Sender)
+{
+     luzRemota = !luzRemota;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::NieblaClick(TObject *Sender)
+{
+     niebla = !niebla;
+}
+//---------------------------------------------------------------------------
 

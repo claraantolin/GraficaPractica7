@@ -6,6 +6,7 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
+#include <Menus.hpp>
 #include <gl\gl.h>
 #include <gl\glu.h>
 
@@ -29,11 +30,19 @@
 class TGLForm3D : public TForm
 {
 __published:    //IDE-managed Components
+        TButton *LuzAmbiente;
+        TButton *LuzLampara;
+        TButton *LuzRemota;
+        TButton *Niebla;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormKeyPress(TObject *Sender, char &Key);
+        void __fastcall LuzAmbienteClick(TObject *Sender);
+        void __fastcall LuzLamparaClick(TObject *Sender);
+        void __fastcall LuzRemotaClick(TObject *Sender);
+        void __fastcall NieblaClick(TObject *Sender);
 
 private:        //User declarations
     HDC hdc;
@@ -54,6 +63,12 @@ private:        //User declarations
     Lista<PV3D*>* curvaX;
     Lista<PV3D*>* curvaY;
     Lista<PV3D*>* curvaZ;
+
+    // Modos iluminación
+    bool luzAmbiente;
+    bool luzLampara;
+    bool luzRemota;
+    bool niebla;
 
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();
