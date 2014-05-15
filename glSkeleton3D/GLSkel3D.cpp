@@ -382,6 +382,23 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
             break;
         }
 
+        case '/':   // Luz Ambiente
+            actDesLuzAmbiente();
+            break;
+
+        case '*':   // Luz Lampara
+            actDesLuzLampara();
+            break;
+
+        case '-':   // Luz Remota
+            actDesLuzRemota();
+            break;
+
+        case '+':   // Niebla
+            actDesNiebla();
+            break;
+
+
         default:
             break;
     }
@@ -390,42 +407,31 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
 
 //---------------------------------------------------------------------------
 
-
-
-
-void __fastcall TGLForm3D::LuzAmbienteClick(TObject *Sender)
-{
+void TGLForm3D::actDesLuzAmbiente() {
     luzAmbiente = !luzAmbiente;
     if(luzAmbiente){
 
     }
     GLScene();
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TGLForm3D::LuzLamparaClick(TObject *Sender)
-{
+void TGLForm3D::actDesLuzLampara() {
     luzLampara = !luzLampara;
     if(luzLampara){
 
     }
     GLScene();
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TGLForm3D::LuzRemotaClick(TObject *Sender)
-{
+void TGLForm3D::actDesLuzRemota() {
     luzRemota = !luzRemota;
     if(luzRemota){
 
     }
-    
     GLScene();
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TGLForm3D::NieblaClick(TObject *Sender)
-{
+void TGLForm3D::actDesNiebla() {
     niebla = !niebla;
     
     if(niebla){
@@ -437,12 +443,11 @@ void __fastcall TGLForm3D::NieblaClick(TObject *Sender)
 
         /* 2. Una vez que hemos elegido el tipo de niebla, debemos elegir un color para la niebla que se mezclará con nuestra escena */
         GLfloat colorNiebla[3]= {0.1,0.1,0.1};
-        //GLfloat colorNiebla[4]= {0.6,0.7,0.8,1.0};
         glFogfv(GL_FOG_COLOR, colorNiebla);
 
         /* 3. Configuramos la niebla */
         glFogf(GL_FOG_START, 70.0f);
-        glFogf(GL_FOG_END, 500.0f);
+        glFogf(GL_FOG_END, 400.0f);
 
         // Si elegimos Exponencial (NO lineal)
         //glFogf(GL_FOG_DENSITY, 0.5f);
@@ -454,5 +459,9 @@ void __fastcall TGLForm3D::NieblaClick(TObject *Sender)
         
     GLScene();
 }
-//---------------------------------------------------------------------------
+
+
+
+
+
 

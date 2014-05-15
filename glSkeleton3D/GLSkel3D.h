@@ -31,19 +31,11 @@
 class TGLForm3D : public TForm
 {
 __published:    //IDE-managed Components
-        TButton *LuzAmbiente;
-        TButton *LuzLampara;
-        TButton *LuzRemota;
-        TButton *Niebla;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormKeyPress(TObject *Sender, char &Key);
-        void __fastcall LuzAmbienteClick(TObject *Sender);
-        void __fastcall LuzLamparaClick(TObject *Sender);
-        void __fastcall LuzRemotaClick(TObject *Sender);
-        void __fastcall NieblaClick(TObject *Sender);
 
 private:        //User declarations
     HDC hdc;
@@ -76,6 +68,10 @@ private:        //User declarations
     void crearObjetosEscena();
     void creaBolas(ObjetoCompuesto3D* objetoCompuesto);
     void liberarObjetosEscena();
+    void actDesLuzAmbiente();
+    void actDesLuzLampara();
+    void actDesLuzRemota();
+    void actDesNiebla();
 
 
 public:     //User declarations

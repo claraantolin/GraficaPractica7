@@ -86,12 +86,12 @@ b ->
 
 - -> 
 
-/ -> 
+/ -> Luz ambiente
 
-* -> 
+* -> Luz lampara
 
-- -> 
+- -> Luz remota
 
-+ -> 
++ -> Niebla
 
 º -> 
