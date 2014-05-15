@@ -395,25 +395,64 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
 
 void __fastcall TGLForm3D::LuzAmbienteClick(TObject *Sender)
 {
-     luzAmbiente = !luzAmbiente;
+    luzAmbiente = !luzAmbiente;
+    if(luzAmbiente){
+
+    }
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::LuzLamparaClick(TObject *Sender)
 {
-     luzLampara = !luzLampara;
+    luzLampara = !luzLampara;
+    if(luzLampara){
+
+    }
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::LuzRemotaClick(TObject *Sender)
 {
-     luzRemota = !luzRemota;
+    luzRemota = !luzRemota;
+    if(luzRemota){
+
+    }
+    
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::NieblaClick(TObject *Sender)
 {
-     niebla = !niebla;
+    niebla = !niebla;
+    
+    if(niebla){
+
+        /* 1. Seleccionamos el modo de niebla: */
+        glFogi(GL_FOG_MODE, GL_LINEAR); // lineal: para indicios de profundidad
+        //glFogi(GL_FOG_MODE, GL_EXP);  // Exponencial: para niebla espesa o nubes
+        //glFogi(GL_FOG_MODE, GL_EXP2); // Gaussiana: para neblina y humo
+
+        /* 2. Una vez que hemos elegido el tipo de niebla, debemos elegir un color para la niebla que se mezclará con nuestra escena */
+        GLfloat colorNiebla[3]= {0.1,0.1,0.1};
+        //GLfloat colorNiebla[4]= {0.6,0.7,0.8,1.0};
+        glFogfv(GL_FOG_COLOR, colorNiebla);
+
+        /* 3. Configuramos la niebla */
+        glFogf(GL_FOG_START, 70.0f);
+        glFogf(GL_FOG_END, 500.0f);
+
+        // Si elegimos Exponencial (NO lineal)
+        //glFogf(GL_FOG_DENSITY, 0.5f);
+
+        /* 4. Activamos la niebla: */
+        glEnable(GL_FOG);
+        
+    }else   glDisable(GL_FOG);
+        
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
