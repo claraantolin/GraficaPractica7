@@ -24,6 +24,7 @@
 #include "Disco.h"
 #include "BolasTriangulo.h"
 #include "Escena.h"
+#include "Lampara.h"
 
 
 //---------------------------------------------------------------------------

@@ -23,6 +23,7 @@ USEUNIT("Pieza.cpp");
 USEUNIT("Escena.cpp");
 USEUNIT("BolasTriangulo.cpp");
 USEUNIT("Taco.cpp");
+USEUNIT("Lampara.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

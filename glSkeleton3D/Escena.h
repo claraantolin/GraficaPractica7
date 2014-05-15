@@ -22,6 +22,7 @@
 #include "Taco.h"
 #include "Tablero.h"
 #include "MesaBillar.h"
+#include "Lampara.h"
 
 //---------------------------------------------------------------------------
 class Escena  : public ObjetoCompuesto3D                                                                     
@@ -46,11 +47,14 @@ class Escena  : public ObjetoCompuesto3D
             // Mesa
             Objeto3D* mesaBillar = new MesaBillar(new TAfin());
 
+            // Lampara
+            Objeto3D* lampara = new Lampara(new TAfin());
 
             objetos->ponElem(taco);
             objetos->ponElem(bolas);
             objetos->ponElem(tiza);
             objetos->ponElem(mesaBillar);
+            objetos->ponElem(lampara);
 
 
         };
