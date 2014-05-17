@@ -56,9 +56,10 @@ class Escena  : public ObjetoCompuesto3D
             objetos->ponElem(mesaBillar);
             objetos->ponElem(lampara);
 
-
         };
         ~Escena(){}
+
+        Objeto3D* getLampara(){ return objetos->iesimo(4);}
 
 };
 

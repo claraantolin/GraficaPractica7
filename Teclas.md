@@ -80,11 +80,9 @@ b ->
 
 **m -> pitch (abajo)**
 
-, -> 
+, -> trasladar lampara abajo
 
-. -> 
-
-- -> 
+. -> trasladar lampara arriba
 
 / -> Luz ambiente
 

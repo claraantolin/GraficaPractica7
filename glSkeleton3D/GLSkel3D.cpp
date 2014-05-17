@@ -398,6 +398,14 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
             actDesNiebla();
             break;
 
+        case '.':   // trasladar la lampara hacia arriba
+            escena->getLampara()->getTAfin()->traslacion(0,1,0);
+            break;
+
+        case ',':   // trasladar la lampara hacia abajo
+            escena->getLampara()->getTAfin()->traslacion(0,-1,0);
+            break;
+
 
         default:
             break;
