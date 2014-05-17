@@ -386,31 +386,6 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
             break;
         }
 
-        case '/':   // Luz Ambiente
-            luzAmbiente = !luzAmbiente;
-            break;
-
-        case '*':   // Luz Lampara
-            luzLampara = !luzLampara;
-            break;
-
-        case '-':   // Luz Remota
-            luzRemota = !luzRemota;
-            break;
-
-        case '+':   // Niebla
-            niebla = !niebla;
-            break;
-
-        case '.':   // trasladar la lampara hacia arriba
-            escena->getLampara()->getTAfin()->traslacion(0,1,0);
-            break;
-
-        case ',':   // trasladar la lampara hacia abajo
-            escena->getLampara()->getTAfin()->traslacion(0,-1,0);
-            break;
-
-
         default:
             break;
     }
@@ -484,45 +459,50 @@ void TGLForm3D::actNiebla() {
 }
 
 
-
-
+//---------------------------------------------------------------------------
+//---------------------------- MENU -----------------------------------------
+//---------------------------------------------------------------------------
 
 
 void __fastcall TGLForm3D::Niebla1Click(TObject *Sender)
 {
-        actDesNiebla();
+    niebla = !niebla;
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::LuzRemota1Click(TObject *Sender)
 {
-        actDesLuzRemota();
+    luzRemota = !luzRemota;
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::LuzAmbiente1Click(TObject *Sender)
 {
-        actDesLuzAmbiente();
+    luzAmbiente = !luzAmbiente;
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::LuzLampara1Click(TObject *Sender)
 {
-         actDesLuzLampara();
+    luzLampara = !luzLampara;
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Derecha1Click(TObject *Sender)
 {
-      escena->getLampara()->getTAfin()->traslacion(0,0,-1);
-      GLScene();
+    escena->getLampara()->getTAfin()->traslacion(0,0,-1);
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Izquierda1Click(TObject *Sender)
 {
-        escena->getLampara()->getTAfin()->traslacion(0,0,1);
-        GLScene();
+    escena->getLampara()->getTAfin()->traslacion(0,0,1);
+    GLScene();
 }
 //---------------------------------------------------------------------------
 
