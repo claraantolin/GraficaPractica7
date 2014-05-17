@@ -35,7 +35,7 @@ class Lampara  : public Cilindro
         Lampara(TAfin* a):Cilindro(a,0.2,1,3,30,20){
           a->rotacion(90,1,0,0);
           a->escalacion(1,1,1);
-          a->traslacion(1.1,7,2);
+          a->traslacion(1.1,9,2);
 
            //Inicializacion del foco de la lampara
             //luzAmbiente = { 1.0, 0.0, 0.0, 1.0 };
@@ -87,7 +87,7 @@ class Lampara  : public Cilindro
                 glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE);
                 glLightfv(GL_LIGHT4, GL_POSITION, posicionLuz);
                 glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, 20);
-                glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, 10.0);
+                glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, 4.0);
                 glLightfv(GL_LIGHT4,GL_SPOT_DIRECTION,posicionFoco);
 
                 luzEncendida == true ? glEnable(GL_LIGHT4) : glDisable(GL_LIGHT4);

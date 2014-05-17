@@ -65,7 +65,6 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
 
     // Modos iluminación
     luzAmbiente = false;
-    luzLampara = false;
     luzRemota = false;
     niebla = false;
 
@@ -397,7 +396,7 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
 void TGLForm3D::actDesIluminacion(){
 
     // Si hay ninguna luz activada:
-    if(luzAmbiente || luzLampara || luzRemota){
+    if(luzAmbiente|| luzRemota){
         // Activamos y configuramos la luz
         glEnable(GL_LIGHT0);
         GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
@@ -411,10 +410,7 @@ void TGLForm3D::actDesIluminacion(){
     // Luz Ambiente
     if(luzAmbiente) actLuzAmbiente();
     else            desLuzAmbiente();
-    
-    // Luz Lampara
-    if(luzLampara)  actLuzLampara();
-    else            desLuzLampara();
+
 
     // Luz Remota
     if(luzRemota)   actLuzRemota();
@@ -424,7 +420,7 @@ void TGLForm3D::actDesIluminacion(){
     else        glDisable(GL_FOG);
 
     // Si no hay ninguna luz activada:
-    if(!luzAmbiente && !luzLampara && !luzRemota)
+    if(!luzAmbiente && !luzRemota)
         glDisable(GL_LIGHT0);
 }
 
@@ -448,13 +444,6 @@ void TGLForm3D::desLuzAmbiente() {
     glDisable(GL_LIGHT_MODEL_AMBIENT);
 }
 
-void TGLForm3D::actLuzLampara() {
-
-}
-
-void TGLForm3D::desLuzLampara() {
-    // TODO
-}
 
 /*  Añadir una luz remota que entre en la escena formando un ángulo de 45º con el 
     plano XZ, y que provenga del este. Esta luz direccional se debe poder encender o apagar*/
@@ -463,7 +452,7 @@ void TGLForm3D::actLuzRemota() {
     //GLfloat lightPosX[] = { 1.0f, 0.0f, 0.0f, 0.0f };
     //glLightfv(GL_LIGHT0, GL_POSITION, lightPosX);
 
-    GLfloat lightPosZ[] = { 1.0f, 0.0f, 1.0f, 0.0f };
+    GLfloat lightPosZ[] = { 0.5f, 0.0f, 0.5f, 0.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosZ);
 }
 
@@ -533,6 +522,23 @@ void __fastcall TGLForm3D::Derecha1Click(TObject *Sender)
 void __fastcall TGLForm3D::Izquierda1Click(TObject *Sender)
 {
     escena->getLampara()->getTAfin()->traslacion(0,0,1);
+    GLScene(); GLScene();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TGLForm3D::Msalta1Click(TObject *Sender)
+{
+    escena->getLampara()->getTAfin()->escalacion(1,1.1,1);
+    escena->getLampara()->getTAfin()->traslacion(0,-0.6,0);
+    GLScene(); GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Menosalta1Click(TObject *Sender)
+{
+    escena->getLampara()->getTAfin()->escalacion(1,0.9,1);
+    escena->getLampara()->getTAfin()->traslacion(0,0.6,0);
     GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------

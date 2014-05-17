@@ -39,6 +39,9 @@ __published:    //IDE-managed Components
         TMenuItem *TrasladarLampara1;
         TMenuItem *Derecha1;
         TMenuItem *Izquierda1;
+        TMenuItem *EscalarLampara1;
+        TMenuItem *Msalta1;
+        TMenuItem *Menosalta1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -50,6 +53,8 @@ __published:    //IDE-managed Components
         void __fastcall LuzLampara1Click(TObject *Sender);
         void __fastcall Derecha1Click(TObject *Sender);
         void __fastcall Izquierda1Click(TObject *Sender);
+        void __fastcall Msalta1Click(TObject *Sender);
+        void __fastcall Menosalta1Click(TObject *Sender);
 
 private:        //User declarations
     HDC hdc;
@@ -73,7 +78,6 @@ private:        //User declarations
 
     // Modos iluminación
     bool luzAmbiente;
-    bool luzLampara;
     bool luzRemota;
     bool niebla;
 
@@ -87,8 +91,6 @@ private:        //User declarations
     void liberarObjetosEscena();
     void actLuzAmbiente();
     void desLuzAmbiente();
-    void actLuzLampara();
-    void desLuzLampara();
     void actLuzRemota();
     void actNiebla();
     void actDesIluminacion();
