@@ -395,7 +395,19 @@ void __fastcall TGLForm3D::FormKeyPress(TObject *Sender, char &Key)
 //---------------------------------------------------------------------------
 
 void TGLForm3D::actDesIluminacion(){
-    
+
+    // Si hay ninguna luz activada:
+    if(luzAmbiente || luzLampara || luzRemota){
+        // Activamos y configuramos la luz
+        glEnable(GL_LIGHT0);
+        GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
+        GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
+        glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
+        GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
+        glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+    }
+
     // Luz Ambiente
     if(luzAmbiente) actLuzAmbiente();
     else            desLuzAmbiente();
@@ -406,7 +418,6 @@ void TGLForm3D::actDesIluminacion(){
 
     // Luz Remota
     if(luzRemota)   actLuzRemota();
-    else            desLuzRemota();
     
     // Niebla
     if(niebla)  actNiebla();
@@ -422,16 +433,6 @@ void TGLForm3D::actDesIluminacion(){
     activar o desactivar de manera que, en ausencia de fuentes de luz encendidas, la 
     escena permanezca completamente a oscuras, si esta luz no está activada */
 void TGLForm3D::actLuzAmbiente(){
-
-    // Activamos y configuramos la luz
-    glEnable(GL_LIGHT0);
-    GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
-    GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
-    glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
-    GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
-    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
-
     // Le damos luz ambiental a la escena
     GLfloat luzAmbiental[] = { 0.8, 0.8, 0.8, 1.0 };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiental);
@@ -458,18 +459,12 @@ void TGLForm3D::desLuzLampara() {
 /*  Añadir una luz remota que entre en la escena formando un ángulo de 45º con el 
     plano XZ, y que provenga del este. Esta luz direccional se debe poder encender o apagar*/
 void TGLForm3D::actLuzRemota() {
-    // Activamos y configuramos la luz
-    glEnable(GL_LIGHT0);
-    GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
-    GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
-    glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
-    GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
-    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
 
-    GLfloat lightPos[] = { 1.0f, 0.0f, 0.0f, 0.0f };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+    //GLfloat lightPosX[] = { 1.0f, 0.0f, 0.0f, 0.0f };
+    //glLightfv(GL_LIGHT0, GL_POSITION, lightPosX);
 
+    GLfloat lightPosZ[] = { 1.0f, 0.0f, 1.0f, 0.0f };
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPosZ);
 }
 
 /*  Añadir niebla a la escena. */

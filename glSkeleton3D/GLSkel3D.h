@@ -86,11 +86,10 @@ private:        //User declarations
     void creaBolas(ObjetoCompuesto3D* objetoCompuesto);
     void liberarObjetosEscena();
     void actLuzAmbiente();
-    void actLuzLampara();
-    void actLuzRemota();
     void desLuzAmbiente();
+    void actLuzLampara();
     void desLuzLampara();
-    void desLuzRemota();
+    void actLuzRemota();
     void actNiebla();
     void actDesIluminacion();
 
