@@ -452,7 +452,7 @@ void TGLForm3D::actLuzRemota() {
     //GLfloat lightPosX[] = { 1.0f, 0.0f, 0.0f, 0.0f };
     //glLightfv(GL_LIGHT0, GL_POSITION, lightPosX);
 
-    GLfloat lightPosZ[] = { 0.5f, 0.0f, 0.5f, 0.0f };
+    GLfloat lightPosZ[] = { 0.5f, 0.0f, 1.0f, 0.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosZ);
 }
 
