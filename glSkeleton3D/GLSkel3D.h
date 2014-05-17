@@ -68,11 +68,14 @@ private:        //User declarations
     void crearObjetosEscena();
     void creaBolas(ObjetoCompuesto3D* objetoCompuesto);
     void liberarObjetosEscena();
-    void actDesLuzAmbiente();
-    void actDesLuzLampara();
-    void actDesLuzRemota();
-    void actDesNiebla();
-
+    void actLuzAmbiente();
+    void actLuzLampara();
+    void actLuzRemota();
+    void desLuzAmbiente();
+    void desLuzLampara();
+    void desLuzRemota();
+    void actNiebla();
+    void actDesIluminacion();
 
 public:     //User declarations
     __fastcall TGLForm3D(TComponent* Owner);
