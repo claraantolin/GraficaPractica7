@@ -529,16 +529,21 @@ void __fastcall TGLForm3D::Izquierda1Click(TObject *Sender)
 
 void __fastcall TGLForm3D::Msalta1Click(TObject *Sender)
 {
-    escena->getLampara()->getTAfin()->escalacion(1,1.1,1);
-    escena->getLampara()->getTAfin()->traslacion(0,-0.6,0);
+    Lampara* l = (Lampara*)escena->getLampara();
+    l->getTAfin()->escalacion(1,1.1,1);
+    l->getTAfin()->traslacion(0,-0.6,0);
+    l->sumaAlturaLampara(0.4);
+
     GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Menosalta1Click(TObject *Sender)
 {
-    escena->getLampara()->getTAfin()->escalacion(1,0.9,1);
-    escena->getLampara()->getTAfin()->traslacion(0,0.6,0);
+    Lampara* l = (Lampara*)escena->getLampara();
+    l->getTAfin()->escalacion(1,0.9,1);
+    l->getTAfin()->traslacion(0,0.6,0);
+    l->sumaAlturaLampara(-0.4);
     GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------

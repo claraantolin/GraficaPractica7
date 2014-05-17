@@ -17,6 +17,8 @@
 #include "Lampara.h"
 #include "Cilindro.h"
 
+#define PI 3.14159265
+
 //---------------------------------------------------------------------------
 class Lampara  : public Cilindro
 {
@@ -28,6 +30,10 @@ class Lampara  : public Cilindro
         GLfloat posicionFoco[4];
 
         bool luzEncendida;
+
+        GLfloat alturaLampara;
+        GLfloat baseLampara;
+        GLfloat anguloLampara;
         
 
     public:
@@ -36,6 +42,10 @@ class Lampara  : public Cilindro
           a->rotacion(90,1,0,0);
           a->escalacion(1,1,1);
           a->traslacion(1.1,9,2);
+
+          baseLampara = 1;
+          alturaLampara = 3;
+          calculoAnguloLampara();
 
            //Inicializacion del foco de la lampara
             //luzAmbiente = { 1.0, 0.0, 0.0, 1.0 };
@@ -86,7 +96,7 @@ class Lampara  : public Cilindro
                 //Luz
                 glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE);
                 glLightfv(GL_LIGHT4, GL_POSITION, posicionLuz);
-                glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, 20);
+                glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, anguloLampara);
                 glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, 4.0);
                 glLightfv(GL_LIGHT4,GL_SPOT_DIRECTION,posicionFoco);
 
@@ -98,11 +108,21 @@ class Lampara  : public Cilindro
 
 
            glPopMatrix();
-           this->setColor(0.2,0.5,0.1);
+
+       }
+
+       void sumaAlturaLampara(GLfloat alturaLamparaSumar){
+           alturaLampara += alturaLamparaSumar;
+           calculoAnguloLampara();
        }
 
        void toggleLuz(){
            luzEncendida = !luzEncendida;
+       }
+
+       private: void calculoAnguloLampara(){
+           GLfloat hipotenusa = sqrt(pow (baseLampara, 2.0) + pow (alturaLampara, 2.0));
+           anguloLampara = acos (alturaLampara/hipotenusa) * 180.0 / PI;
        }
 
          
