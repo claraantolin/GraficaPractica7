@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------
 class Cilindro  : public ObjetoCuadrico                                                                     
 {                                                             
-    private:
+    protected:
         GLUquadricObj* cilindro;
         GLdouble  	base;
  	    GLdouble  	top;

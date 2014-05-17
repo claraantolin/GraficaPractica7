@@ -434,7 +434,7 @@ void TGLForm3D::actDesIluminacion(){
     escena permanezca completamente a oscuras, si esta luz no está activada */
 void TGLForm3D::actLuzAmbiente(){
     // Le damos luz ambiental a la escena
-    GLfloat luzAmbiental[] = { 0.8, 0.8, 0.8, 1.0 };
+    GLfloat luzAmbiental[] = { 0.1, 0.1, 0.1, 1.0 };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiental);
 }
 
@@ -449,7 +449,7 @@ void TGLForm3D::desLuzAmbiente() {
 }
 
 void TGLForm3D::actLuzLampara() {
-    // TODO
+
 }
 
 void TGLForm3D::desLuzLampara() {
@@ -518,22 +518,22 @@ void __fastcall TGLForm3D::LuzAmbiente1Click(TObject *Sender)
 
 void __fastcall TGLForm3D::LuzLampara1Click(TObject *Sender)
 {
-    luzLampara = !luzLampara;
-    GLScene();
+    Lampara* l = (Lampara*)escena->getLampara();
+    l->toggleLuz(); GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Derecha1Click(TObject *Sender)
 {
     escena->getLampara()->getTAfin()->traslacion(0,0,-1);
-    GLScene();
+    GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Izquierda1Click(TObject *Sender)
 {
     escena->getLampara()->getTAfin()->traslacion(0,0,1);
-    GLScene();
+    GLScene(); GLScene();
 }
 //---------------------------------------------------------------------------
 
