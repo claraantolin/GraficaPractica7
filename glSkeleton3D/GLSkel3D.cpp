@@ -55,13 +55,13 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
     RatioViewPort=1.0;
     
     //Luz0
-    glEnable(GL_LIGHT0);
+    /*glEnable(GL_LIGHT0);
     GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
     GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
     glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
     GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
-    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);*/
 
     // Modos iluminación
     luzAmbiente = false;
@@ -411,14 +411,40 @@ void TGLForm3D::actDesIluminacion(){
     // Niebla
     if(niebla)  actNiebla();
     else        glDisable(GL_FOG);
+
+    // Si no hay ninguna luz activada:
+    if(!luzAmbiente && !luzLampara && !luzRemota)
+        glDisable(GL_LIGHT0);
 }
 
-void TGLForm3D::actLuzAmbiente() {
-    // TODO
+
+/*  Añadir luz ambiente global (baño de luz) a la escena. Esta luz se debe poder 
+    activar o desactivar de manera que, en ausencia de fuentes de luz encendidas, la 
+    escena permanezca completamente a oscuras, si esta luz no está activada */
+void TGLForm3D::actLuzAmbiente(){
+
+    // Activamos y configuramos la luz
+    glEnable(GL_LIGHT0);
+    GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
+    GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
+    GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
+    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+
+    // Le damos luz ambiental a la escena
+    GLfloat luzAmbiental[] = { 0.8, 0.8, 0.8, 1.0 };
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiental);
 }
 
 void TGLForm3D::desLuzAmbiente() {
-    // TODO
+
+    // ponemos a 0 la luz ambiental
+    GLfloat luzAmbiental[] = { 0.0, 0.0, 0.0, 1.0 };
+    glLightModelfv (GL_LIGHT_MODEL_AMBIENT, luzAmbiental);
+
+    // Desactivamos la luz
+    glDisable(GL_LIGHT_MODEL_AMBIENT);
 }
 
 void TGLForm3D::actLuzLampara() {
@@ -429,14 +455,24 @@ void TGLForm3D::desLuzLampara() {
     // TODO
 }
 
+/*  Añadir una luz remota que entre en la escena formando un ángulo de 45º con el 
+    plano XZ, y que provenga del este. Esta luz direccional se debe poder encender o apagar*/
 void TGLForm3D::actLuzRemota() {
-    // TODO
+    // Activamos y configuramos la luz
+    glEnable(GL_LIGHT0);
+    GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LuzDifusa);
+    GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LuzAmbiente);
+    GLfloat PosicionLuz0[]={25.0, 25.0, 0.0, 1.0};
+    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+
+    GLfloat lightPos[] = { 1.0f, 0.0f, 0.0f, 0.0f };
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
 }
 
-void TGLForm3D::desLuzRemota() {
-    // TODO
-}
-
+/*  Añadir niebla a la escena. */
 void TGLForm3D::actNiebla() {
     /* 1. Seleccionamos el modo de niebla: */
     glFogi(GL_FOG_MODE, GL_LINEAR); // lineal: para indicios de profundidad
