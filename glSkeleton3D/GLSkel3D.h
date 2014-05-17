@@ -31,11 +31,25 @@
 class TGLForm3D : public TForm
 {
 __published:    //IDE-managed Components
+        TMainMenu *MainMenu1;
+        TMenuItem *Niebla1;
+        TMenuItem *LuzRemota1;
+        TMenuItem *LuzAmbiente1;
+        TMenuItem *LuzLampara1;
+        TMenuItem *TrasladarLampara1;
+        TMenuItem *Derecha1;
+        TMenuItem *Izquierda1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormKeyPress(TObject *Sender, char &Key);
+        void __fastcall Niebla1Click(TObject *Sender);
+        void __fastcall LuzRemota1Click(TObject *Sender);
+        void __fastcall LuzAmbiente1Click(TObject *Sender);
+        void __fastcall LuzLampara1Click(TObject *Sender);
+        void __fastcall Derecha1Click(TObject *Sender);
+        void __fastcall Izquierda1Click(TObject *Sender);
 
 private:        //User declarations
     HDC hdc;
@@ -62,6 +76,9 @@ private:        //User declarations
     bool luzLampara;
     bool luzRemota;
     bool niebla;
+
+    //Cerrar Ventana
+    bool ventanaCerrada;
 
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();

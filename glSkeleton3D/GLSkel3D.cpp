@@ -82,6 +82,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
        curvaX->ponElem(new PV3D( 1, cos(2*PI-t*inc) , sin(2*PI-t*inc), 1));
     }
 
+    ventanaCerrada = false;
 }
 
 //---------------------------------------------------------------------------
@@ -139,7 +140,7 @@ void __fastcall TGLForm3D::FormResize(TObject *Sender) {
     glLoadIdentity();
     glOrtho(xLeft, xRight, yBot, yTop, N, F);
 
-GLScene();
+    if(!ventanaCerrada) GLScene();
 }
 
 //---------------------------------------------------------------------------
@@ -210,6 +211,8 @@ void TGLForm3D::liberarObjetosEscena() {
     delete curvaX;
     delete camara;
     delete escena;
+
+    ventanaCerrada = true;
 }
 
 //---------------------------------------------------------------------------
@@ -484,4 +487,42 @@ void TGLForm3D::actNiebla() {
 
 
 
+
+void __fastcall TGLForm3D::Niebla1Click(TObject *Sender)
+{
+        actDesNiebla();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::LuzRemota1Click(TObject *Sender)
+{
+        actDesLuzRemota();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::LuzAmbiente1Click(TObject *Sender)
+{
+        actDesLuzAmbiente();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::LuzLampara1Click(TObject *Sender)
+{
+         actDesLuzLampara();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Derecha1Click(TObject *Sender)
+{
+      escena->getLampara()->getTAfin()->traslacion(0,0,-1);
+      GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Izquierda1Click(TObject *Sender)
+{
+        escena->getLampara()->getTAfin()->traslacion(0,0,1);
+        GLScene();
+}
+//---------------------------------------------------------------------------
 
