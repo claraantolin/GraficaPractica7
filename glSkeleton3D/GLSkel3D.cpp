@@ -148,6 +148,8 @@ void __fastcall TGLForm3D::FormResize(TObject *Sender) {
 void __fastcall TGLForm3D::GLScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    actDesIluminacion();
+
     //Dibujo de los ejes
     glBegin(GL_LINES);
         glColor4d(1.0, 0.0, 0.0, 1.0);
@@ -162,8 +164,7 @@ void __fastcall TGLForm3D::GLScene() {
         glVertex3d(0.0, 0.0, 0.0);
         glVertex3d(0.0, 0.0, 20.0);     
     glEnd();
-
-    actDesIluminacion();
+    
     escena->dibuja();
     
     //glFlush();
@@ -445,15 +446,14 @@ void TGLForm3D::desLuzAmbiente() {
 /*  Añadir una luz remota que entre en la escena formando un ángulo de 45º con el 
     plano XZ, y que provenga del este. Esta luz direccional se debe poder encender o apagar*/
 void TGLForm3D::actLuzRemota() {
-    
+
     glEnable(GL_LIGHT2);
 
     GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
     glLightfv(GL_LIGHT2, GL_DIFFUSE, LuzDifusa);
-    /*GLfloat LuzAmbiente[]={0.0,0.0,0.0,1.0};
-    glLightfv(GL_LIGHT2, GL_AMBIENT, LuzAmbiente);*/
-
-    GLfloat lightPos[] = { -2.0f, 2.0f, -2.0f, 1.0f };
+    GLfloat LuzAmbiente[]={0.0,0.0,0.0,1.0};
+    glLightfv(GL_LIGHT2, GL_AMBIENT, LuzAmbiente);
+    GLfloat lightPos[] = { 2.0f, 2.0f, 0.0f, 0.0f };
     glLightfv(GL_LIGHT2, GL_POSITION, lightPos);
 }
 
