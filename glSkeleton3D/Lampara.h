@@ -82,7 +82,8 @@ class Lampara  : public Cilindro
             glLightfv(GL_LIGHT4, GL_SPECULAR, luzEspecular);
 
             glEnable(GL_LIGHT4);
-            luzEncendida = true;
+            //luzEncendida = true;
+            luzEncendida = false;
 
 
           
