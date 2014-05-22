@@ -47,6 +47,7 @@ class Malla : public Objeto3D
             anguloX = 0.0f; anguloY = 0.0f; anguloZ = 0.0f;
 
             this->color = color;
+            initTextura("icono.bmp");
 
         };
         
