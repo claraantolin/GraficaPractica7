@@ -18,6 +18,7 @@
 #include "Objeto3D.h"
 #include "TAfin.h"
 #include "Color.h"
+#include "Pixmap.h"
 //---------------------------------------------------------------------------
 class Malla : public Objeto3D
 {
@@ -31,6 +32,9 @@ class Malla : public Objeto3D
         Lista<Cara*>* caras;
 
         GLdouble anguloX, anguloY, anguloZ;
+
+        Pixmap* pixmap;
+        GLuint texName;
 
    public:
         
@@ -51,6 +55,7 @@ class Malla : public Objeto3D
             delete vertices;
             delete normales;
             delete caras;
+            //delete pixmap;
 
             numVertices = 0;
             numNormales = 0;
@@ -120,12 +125,17 @@ class Malla : public Objeto3D
 
             for (int i = 0; i < numCaras; i++){
                                      
-                    glLineWidth(1.0);
+                    glLineWidth(1.0); 
+
+                    //Texturas
+                    glEnable(GL_TEXTURE_2D);
+                    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+                    glBindTexture(GL_TEXTURE_2D, texName);
 
                     if(modoT == 0)
-                        glBegin(GL_POLYGON);
+                        glBegin(GL_QUADS);
                     else
-                        glBegin(GL_LINE_LOOP);
+                        glBegin(GL_QUADS);
 
                     Cara* cara = caras->iesimo(i);
                     for (int j = 0; j < cara->getNumVertices(); j++) {
@@ -151,11 +161,13 @@ class Malla : public Objeto3D
 
                         // Pintamos cada vertice
                         glColor3f(color->getR(),color->getG(),color->getB());
+                        coordTextura(j);
                         glVertex3d(verticeX,verticeY,verticeZ);
 
                     } // for 2
 
                     glEnd();
+                    glDisable(GL_TEXTURE_2D);
 
                     // Dibujamos las normales
                     if(modoN == 1){
@@ -172,6 +184,7 @@ class Malla : public Objeto3D
 
 
         }// Dibuja
+
 
 //------------------------------------------------------------------------------
                         /***** calculaCaras *****/
@@ -262,52 +275,60 @@ class Malla : public Objeto3D
             matriz->ponElem(n); matriz->ponElem(b); matriz->ponElem(tM); matriz->ponElem(c);
             return matriz;
         }
-
 //------------------------------------------------------------------------------
-                        /***** hazMatriz *****/
+                        /***** setTextura *****/
+//------------------------------------------------------------------------------
+        void initTextura(String rutaFichero){
+           pixmap = new Pixmap();
+                pixmap->cargaBMP("./icono.bmp");
+
+                glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+                glGenTextures(1, &texName);
+                glBindTexture(GL_TEXTURE_2D, texName);
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                                GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                                GL_NEAREST);
+
+                GLuint rows = pixmap->getRows();
+                GLuint cols = pixmap->getCols();
+                colorRGBA* imagen = pixmap->getBMP();
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cols,
+                                rows, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                                imagen);
+        }
+//------------------------------------------------------------------------------
+                        /***** coordTextura *****/
 //------------------------------------------------------------------------------
 
-        /*Lista<PV3D*>* hazMatriz(GLfloat t, GLfloat r){
+        private: void coordTextura(int verticeCara){
 
-            //C(t) = (3cos(t), 2cos(1,5t), 3sen(t));
-            //C'(t) = (-3sen(t), 3sen(1,5t), 3cos(t));
-            //C''(t) = (-3cos(t), -4,5cos(1,5t), -3sen(t))
+            switch(verticeCara){
 
-            //M(t) = (N(t), B(t), T(t), C(t))
-            //       ( 0  ,  0  ,  0  ,  1  )
+                case 0:   
+                    glTexCoord2d(0, 0);
+                    break;
 
-            PV3D* c = new PV3D(3*cos(t)*2, 2*cos(1.5*t)*2, 3*sin(t)*2,1);
-            PV3D* cPrima = new PV3D (-3*sin(t)*2, -3*sin(1.5*t)*2, 3*cos(t)*2,1);
-            PV3D* cPrimaPrima = new PV3D (-3*cos(t)*2, -4.5*cos(1.5*t)*2, -3*sin(t)*2,1);
+                case 1:
+                    glTexCoord2d(0, 1);
+                    break;
 
-            /*PV3D* c = new PV3D(3*cos(t)*2, 2*cos(1.5*t)*2, 3*sin(t)*2,1);
-            PV3D* cPrima = new PV3D (-3*sin(t)*2, -2*sin(1.5*t)*2, 3*cos(t)*2,1);
-            PV3D* cPrimaPrima = new PV3D (-3*cos(t)*2, -2*cos(1.5*t)*2, -3*sin(t)*2,1);/
+                case 2:
+                    glTexCoord2d(1 ,1);
+                    break;
 
-            //T(t) = C'(t) normalizado
-            PV3D* tM = new PV3D(cPrima->getX(),cPrima->getY(),cPrima->getZ(), cPrima->getW());
-            tM->normaliza();
+                case 3:
+                    glTexCoord2d(1,0 );
+                    break;
 
-            //B(t)= C'(t) x C''(t)
-            PV3D* b = cPrima-> productoVectorial(cPrimaPrima);    
-            b->normaliza();
-            //PV3D* p = cPrimaPrima->productoVectorial(cPrima);
-
-            //N(t)= B(x) x T(x)
-            PV3D* n = b->productoVectorial(tM);
-            n->normaliza();
-
-            PV3D* primeraFila = new PV3D(n->getX(), b->getX(), tM->getX(), c->getX());
-            PV3D* segundaFila = new PV3D(n->getY(), b->getY(), tM->getY(), c->getY());
-            PV3D* terceraFila = new PV3D(n->getZ(), b->getZ(), tM->getZ(), c->getZ());
-            PV3D* cuartaFila  = new PV3D(0, 0, 0, 1);
-
-            delete n; delete b; delete tM; delete c; delete cPrima; delete cPrimaPrima;
-
-            Lista<PV3D*>* matriz = new Lista<PV3D*>();
-            matriz->ponElem(primeraFila); matriz->ponElem(segundaFila); matriz->ponElem(terceraFila); matriz->ponElem(cuartaFila);
-            return matriz;
-        }*/
+                default:
+                    break;
+             }
+        }
             
 };
 

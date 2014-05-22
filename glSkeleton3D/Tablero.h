@@ -21,6 +21,7 @@
 #include "TAfin.h"
 #include "Pieza.h"
 #include "Color.h"
+
 //---------------------------------------------------------------------------
 class Tablero : public Malla
 {
@@ -34,7 +35,7 @@ class Tablero : public Malla
         int divAncho;
         int divAlto;
 
-        Lista<Pieza*>* piezas; 
+        Lista<Pieza*>* piezas;
 
    public:           
 
@@ -62,11 +63,12 @@ class Tablero : public Malla
                         TAfin* aPieza = new TAfin(); aPieza->traslacion(3,2.7,5);
                         piezas->ponElem(new Pieza(r, g, b, 4, 2, ancho/divAncho, alto/divAlto, largo/divLargo, k, i, j, aPieza));
                     }
-              
         };
 
         
         ~Tablero(){delete piezas;}
+
+
 
 //------------------------------------------------------------------------------
                         /***** dibujaTablero *****/

@@ -32,7 +32,10 @@ class MesaBillar  : public ObjetoCompuesto3D
 
             // Tapiz Verde
             TAfin* aTapizVerde = new TAfin(); aTapizVerde->traslacion(0.3,2.1,0.25);
-            Objeto3D* tapizVerde = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapizVerde);
+            Tablero* tapiz = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapizVerde);
+            tapiz->initTextura("./icono.bmp");
+            Objeto3D* tapizVerde = tapiz;
+
 
             // Marcos
             TAfin* aMarco1 = new TAfin(); aMarco1->traslacion(0,2.2,-1.25);

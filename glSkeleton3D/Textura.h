@@ -30,7 +30,7 @@ class Textura
 
     public:
 
-        Textura(){
+        Textura(String rutaFichero){
                 pixmap = new Pixmap();
                 pixmap->cargaBMP("./icono.bmp");
 
@@ -55,6 +55,8 @@ class Textura
         };
         ~Textura(){delete pixmap;}
 
+        GLuint getTextName(){ return texName;}
+
         void display()
         {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -75,6 +77,8 @@ class Textura
                 glFlush();
                 glDisable(GL_TEXTURE_2D);
         }
+
+
 
 
 };

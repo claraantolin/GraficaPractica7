@@ -83,7 +83,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
 
     ventanaCerrada = false;
 
-    tex = new Textura();
+    tex = new Textura("./icono.bmp");
 }
 
 //---------------------------------------------------------------------------
@@ -167,7 +167,7 @@ void __fastcall TGLForm3D::GLScene() {
         glVertex3d(0.0, 0.0, 20.0);     
     glEnd();
     
-    escena->dibuja();
+    escena->dibuja();  
 
     //tex->display();
     

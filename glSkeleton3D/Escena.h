@@ -49,7 +49,6 @@ class Escena  : public ObjetoCompuesto3D
 
             // Lampara
             Objeto3D* lampara = new Lampara(new TAfin());
-            //Objeto3D* lampara = new LamparaAux(new TAfin());
 
             objetos->ponElem(taco);
             objetos->ponElem(bolas);
