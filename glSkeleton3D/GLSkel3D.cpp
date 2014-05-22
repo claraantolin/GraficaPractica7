@@ -82,6 +82,8 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
     }
 
     ventanaCerrada = false;
+
+    tex = new Textura();
 }
 
 //---------------------------------------------------------------------------
@@ -166,6 +168,8 @@ void __fastcall TGLForm3D::GLScene() {
     glEnd();
     
     escena->dibuja();
+
+    //tex->display();
     
     //glFlush();
     SwapBuffers(hdc);
@@ -212,6 +216,7 @@ void TGLForm3D::liberarObjetosEscena() {
     delete curvaX;
     delete camara;
     delete escena;
+    delete tex;
 
     ventanaCerrada = true;
 }

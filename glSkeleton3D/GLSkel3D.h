@@ -25,6 +25,7 @@
 #include "BolasTriangulo.h"
 #include "Escena.h"
 #include "Lampara.h"
+#include "Textura.h"
 
 
 //---------------------------------------------------------------------------
@@ -75,6 +76,8 @@ private:        //User declarations
     Lista<PV3D*>* curvaX;
     Lista<PV3D*>* curvaY;
     Lista<PV3D*>* curvaZ;
+
+    Textura* tex;
 
     // Modos iluminación
     bool luzAmbiente;
