@@ -8,7 +8,7 @@
       VerticeNormal.obj Camara.obj TAfin.obj Color.obj Objeto3D.obj 
       ObjetoCompuesto3D.obj ObjetoCuadrico.obj Esfera.obj Cilindro.obj Disco.obj 
       Tablero.obj Pieza.obj Escena.obj BolasTriangulo.obj Taco.obj Lampara.obj 
-      Pixmap.obj"/>
+      Pixmap.obj Textura.obj"/>
     <RESFILES value="GLProj3D.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) GLSkel3D.dfm"/>

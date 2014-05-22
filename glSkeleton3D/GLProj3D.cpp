@@ -25,6 +25,7 @@ USEUNIT("BolasTriangulo.cpp");
 USEUNIT("Taco.cpp");
 USEUNIT("Lampara.cpp");
 USEUNIT("Pixmap.cpp");
+USEUNIT("Textura.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
