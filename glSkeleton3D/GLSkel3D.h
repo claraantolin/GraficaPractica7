@@ -77,7 +77,8 @@ private:        //User declarations
     Lista<PV3D*>* curvaY;
     Lista<PV3D*>* curvaZ;
 
-    Textura* tex;
+    Textura* tex1;
+    Textura* tex2;
 
     // Modos iluminación
     bool luzAmbiente;

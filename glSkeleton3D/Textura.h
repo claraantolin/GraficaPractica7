@@ -30,9 +30,12 @@ class Textura
 
     public:
 
-        Textura(String rutaFichero){
-                pixmap = new Pixmap();
-                pixmap->cargaBMP("./icono.bmp");
+        Textura(String rutaFichero, int m){
+                pixmap = new Pixmap();                
+                if(m == 1)
+                    pixmap->cargaBMP("./iconoTapete.bmp");
+                else if(m == 2)
+                    pixmap->cargaBMP("./iconoMarcosMesa.bmp");
 
                 glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 

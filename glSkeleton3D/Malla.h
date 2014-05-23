@@ -36,6 +36,8 @@ class Malla : public Objeto3D
         Pixmap* pixmap;
         GLuint texName;
 
+        int modoTextura;
+
    public:
         
         Malla();
@@ -51,15 +53,17 @@ class Malla : public Objeto3D
 
         };
 
-        Malla(Color* color, int inumV, Lista<PV3D*>* v, int numN, Lista<PV3D*>* n, int numC, Lista<Cara*>* c, TAfin* a, int m):Objeto3D(a){
+        Malla(Color* color, int inumV, Lista<PV3D*>* v, int numN, Lista<PV3D*>* n, int numC, Lista<Cara*>* c, TAfin* a, int m, String nombre):Objeto3D(a){
             numVertices = inumV; vertices = v;
             numNormales = numN;  normales = n;
             numCaras = numC;     caras = c;
             anguloX = 0.0f; anguloY = 0.0f; anguloZ = 0.0f;
 
             this->color = color;
-            if(m==1)
-                initTextura("icono.bmp");
+
+            modoTextura = m;
+            if(modoTextura !=0)
+                initTextura(nombre);
 
         };
         
@@ -77,7 +81,6 @@ class Malla : public Objeto3D
             anguloX = 0;
             anguloY = 0;
             anguloZ = 0;
-
             
         }
 
@@ -292,27 +295,31 @@ class Malla : public Objeto3D
                         /***** setTextura *****/
 //------------------------------------------------------------------------------
         void initTextura(String rutaFichero){
-           pixmap = new Pixmap();
-                pixmap->cargaBMP("./icono.bmp");
+            pixmap = new Pixmap();
 
-                glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            if(modoTextura == 1)
+                pixmap->cargaBMP("./iconoTapete.bmp");
+            else if(modoTextura == 2)
+                pixmap->cargaBMP("./iconoMarcosMesa.bmp");
 
-                glGenTextures(1, &texName);
-                glBindTexture(GL_TEXTURE_2D, texName);
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-                                GL_NEAREST);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                                GL_NEAREST);
+            glGenTextures(1, &texName);
+            glBindTexture(GL_TEXTURE_2D, texName);
 
-                GLuint rows = pixmap->getRows();
-                GLuint cols = pixmap->getCols();
-                colorRGBA* imagen = pixmap->getBMP();
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cols,
-                                rows, 0, GL_RGB, GL_UNSIGNED_BYTE,
-                                imagen);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                            GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                            GL_NEAREST);
+
+            GLuint rows = pixmap->getRows();
+            GLuint cols = pixmap->getCols();
+            colorRGBA* imagen = pixmap->getBMP();
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cols,
+                            rows, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                            imagen);
         }
 //------------------------------------------------------------------------------
                         /***** coordTextura *****/

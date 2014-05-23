@@ -32,23 +32,23 @@ class MesaBillar  : public ObjetoCompuesto3D
 
             // tapete Verde
             TAfin* aTapeteVerde = new TAfin(); aTapeteVerde->traslacion(0.3,2.1,0.25);
-            Tablero* tapete = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapeteVerde, 1);
+            Tablero* tapete = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapeteVerde, 1, "./iconoTapete.bmp");
             //tapete->initTextura("./icono.bmp");
             Objeto3D* tapeteVerde = tapete;
 
 
             // Marcos
             TAfin* aMarco1 = new TAfin(); aMarco1->traslacion(0,2.2,-1.25);
-            Objeto3D* marco1 = new Tablero(1.0,0.0,0.0, 0.5,4,0.8, 1,3,1, aMarco1);
+            Objeto3D* marco1 = new Tablero(1.0,0.0,0.0, 0.5,4,0.8, 1,3,1, aMarco1, 2, "./iconoMarcosMesa.bmp");
 
             TAfin* aMarco2 = new TAfin(); aMarco2->traslacion(-0.4,2.2,0);
-            Objeto3D* marco2 = new Tablero(1.0,0.0,0.0, 7,0.5,0.8, 4,1,1, aMarco2);
+            Objeto3D* marco2 = new Tablero(1.0,0.0,0.0, 7,0.5,0.8, 4,1,1, aMarco2, 2, "./iconoMarcosMesa.bmp");
 
             TAfin* aMarco3 = new TAfin(); aMarco3->traslacion(0,2.2,5.25);
-            Objeto3D* marco3 = new Tablero(1.0,0.0,0.0, 0.5,4,0.8, 1,3,1,aMarco3);
+            Objeto3D* marco3 = new Tablero(1.0,0.0,0.0, 0.5,4,0.8, 1,3,1,aMarco3, 2, "./iconoMarcosMesa.bmp");
 
             TAfin* aMarco4 = new TAfin(); aMarco4->traslacion(3.1,2.2,0);
-            Objeto3D* marco4 = new Tablero(1.0,0.0,0.0, 7,0.5,0.8, 4,1,1, aMarco4);
+            Objeto3D* marco4 = new Tablero(1.0,0.0,0.0, 7,0.5,0.8, 4,1,1, aMarco4, 2, "./iconoMarcosMesa.bmp");
 
             // Patas
             TAfin* aPata1 = new TAfin(); aPata1->traslacion(-0.4,-0.65,-1.25);
