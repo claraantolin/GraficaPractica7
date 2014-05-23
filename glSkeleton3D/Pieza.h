@@ -32,7 +32,7 @@ class Pieza : public Malla
    public:
 
         Pieza();
-        Pieza(GLdouble r, GLdouble g, GLdouble b, int nlados, int nRodajas, GLdouble ancho, GLdouble alto, GLdouble largo, GLdouble x, GLdouble y, GLdouble z, TAfin* a):Malla(new Color(r,g,b),0,new Lista<PV3D*>(), 0, new Lista<PV3D*>(), 0, new Lista<Cara*>(), a){
+        Pieza(GLdouble r, GLdouble g, GLdouble b, int nlados, int nRodajas, GLdouble ancho, GLdouble alto, GLdouble largo, GLdouble x, GLdouble y, GLdouble z, TAfin* a, int m):Malla(new Color(r,g,b),0,new Lista<PV3D*>(), 0, new Lista<PV3D*>(), 0, new Lista<Cara*>(), a, m){
 
             // Damos valor a nuestros atributos
             numLados = nlados;

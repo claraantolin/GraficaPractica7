@@ -30,11 +30,11 @@ class MesaBillar  : public ObjetoCompuesto3D
 
             color = new Color(1,1,1);
 
-            // Tapiz Verde
-            TAfin* aTapizVerde = new TAfin(); aTapizVerde->traslacion(0.3,2.1,0.25);
-            Tablero* tapiz = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapizVerde);
-            //tapiz->initTextura("./icono.bmp");
-            Objeto3D* tapizVerde = tapiz;
+            // tapete Verde
+            TAfin* aTapeteVerde = new TAfin(); aTapeteVerde->traslacion(0.3,2.1,0.25);
+            Tablero* tapete = new Tablero(0.0,1.0,0.0, 6,3,0.5, 4,3,1, aTapeteVerde, 1);
+            //tapete->initTextura("./icono.bmp");
+            Objeto3D* tapeteVerde = tapete;
 
 
             // Marcos
@@ -107,7 +107,7 @@ class MesaBillar  : public ObjetoCompuesto3D
             tronera6->setColor(0,0,0);
 
 
-            objetos->ponElem(tapizVerde);
+            objetos->ponElem(tapeteVerde);
             objetos->ponElem(marco1);
             objetos->ponElem(marco2);
             objetos->ponElem(marco3);

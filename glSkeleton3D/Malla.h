@@ -50,6 +50,18 @@ class Malla : public Objeto3D
             initTextura("icono.bmp");
 
         };
+
+        Malla(Color* color, int inumV, Lista<PV3D*>* v, int numN, Lista<PV3D*>* n, int numC, Lista<Cara*>* c, TAfin* a, int m):Objeto3D(a){
+            numVertices = inumV; vertices = v;
+            numNormales = numN;  normales = n;
+            numCaras = numC;     caras = c;
+            anguloX = 0.0f; anguloY = 0.0f; anguloZ = 0.0f;
+
+            this->color = color;
+            if(m==1)
+                initTextura("icono.bmp");
+
+        };
         
         ~Malla(){
             
