@@ -66,7 +66,7 @@ class Tablero : public Malla
         };
 
         // Si queremos indicarle que la pieza es con textura o no
-        Tablero(GLdouble r, GLdouble g, GLdouble b, GLdouble largo, GLdouble ancho, GLdouble alto, GLdouble divL, GLdouble divAn, GLdouble divAl, TAfin* a, int m, String nombre):Malla(new Color(r,g,b),0,new Lista<PV3D*>(), 0, new Lista<PV3D*>(), 0, new Lista<Cara*>(), a, m, nombre){
+        Tablero(GLdouble r, GLdouble g, GLdouble b, GLdouble largo, GLdouble ancho, GLdouble alto, GLdouble divL, GLdouble divAn, GLdouble divAl, TAfin* a, int m, const string& nombre):Malla(new Color(r,g,b),0,new Lista<PV3D*>(), 0, new Lista<PV3D*>(), 0, new Lista<Cara*>(), a, m, nombre){
             this->largo = largo;
             this->ancho = ancho;
             this->alto = alto;

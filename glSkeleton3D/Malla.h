@@ -53,7 +53,7 @@ class Malla : public Objeto3D
 
         };
 
-        Malla(Color* color, int inumV, Lista<PV3D*>* v, int numN, Lista<PV3D*>* n, int numC, Lista<Cara*>* c, TAfin* a, int m, String nombre):Objeto3D(a){
+        Malla(Color* color, int inumV, Lista<PV3D*>* v, int numN, Lista<PV3D*>* n, int numC, Lista<Cara*>* c, TAfin* a, int m, const string& nombre):Objeto3D(a){
             numVertices = inumV; vertices = v;
             numNormales = numN;  normales = n;
             numCaras = numC;     caras = c;
@@ -293,13 +293,18 @@ class Malla : public Objeto3D
 //------------------------------------------------------------------------------
                         /***** initTextura *****/
 //------------------------------------------------------------------------------
-        void initTextura(String rutaFichero){
+        void initTextura(const string& rutaFichero){
             pixmap = new Pixmap();
 
-            if(modoTextura == 1)
+            /*if(modoTextura == 1)
                 pixmap->cargaBMP("./iconoTapete.bmp");
             else if(modoTextura == 2)
-                pixmap->cargaBMP("./iconoMarcosMesa.bmp");
+                pixmap->cargaBMP("./iconoMarcosMesa.bmp");*/
+
+            if(modoTextura != 0){
+                //const string& s = (const string&)rutaFichero;
+                pixmap->cargaBMP(rutaFichero);  //const string&
+            }
 
             glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
