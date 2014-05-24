@@ -145,7 +145,6 @@ class Malla : public Objeto3D
 
                     //Texturas
                     glEnable(GL_TEXTURE_2D);
-                    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
                     glBindTexture(GL_TEXTURE_2D, texName);
 
                     if(modoT == 0)

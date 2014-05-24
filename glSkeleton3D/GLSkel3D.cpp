@@ -82,10 +82,8 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender) {
     }
 
     ventanaCerrada = false;
-
-    //tex = new Textura("./icono.bmp");
-    tex1 = new Textura("./iconoTapete.bmp",1);
-    tex2 = new Textura("./iconoMarcosMesa.bmp",2);
+    //tex1 = new Textura("./iconoTapete.bmp",1);
+    //tex2 = new Textura("./iconoMarcosMesa.bmp",2);
 }
 
 //---------------------------------------------------------------------------
@@ -169,10 +167,8 @@ void __fastcall TGLForm3D::GLScene() {
         glVertex3d(0.0, 0.0, 20.0);     
     glEnd();
     
-    escena->dibuja();  
+    escena->dibuja();
 
-    //tex->display();
-    
     //glFlush();
     SwapBuffers(hdc);
 }
