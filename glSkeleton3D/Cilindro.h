@@ -46,7 +46,7 @@ class Cilindro  : public ObjetoCuadrico
                 this->stacks = stacks;
         };
 
-         Cilindro(TAfin* a, GLdouble base, GLdouble top, GLdouble height, GLint slices, GLint stacks, int modoTextura):ObjetoCuadrico(a, modoTextura){
+         Cilindro(TAfin* a, GLdouble base, GLdouble top, GLdouble height, GLint slices, GLint stacks,const string& rutaTextura):ObjetoCuadrico(a,rutaTextura){
                 cilindro = gluNewQuadric();
                 gluQuadricDrawStyle(cilindro, GLU_FILL);
                 color = new Color(1,1,1);

@@ -26,17 +26,12 @@ class ObjetoCuadrico : public Objeto3D
         Pixmap* pixmap;
         GLuint texName;
 
-        int modoTextura;
-
-        
-
     public:
 
         ObjetoCuadrico(TAfin* a):Objeto3D(a){};
-        ObjetoCuadrico(TAfin* a, int modoTex):Objeto3D(a){
-                modoTextura = modoTex;
-                if(modoTextura  != 0)
-                        initTextura("./icono.bmp");
+        ObjetoCuadrico(TAfin* a, const string& rutaTextura):Objeto3D(a){
+
+                initTextura(rutaTextura);
 
         };
         ~ObjetoCuadrico(){}
@@ -45,11 +40,11 @@ class ObjetoCuadrico : public Objeto3D
 //------------------------------------------------------------------------------
                         /***** initTextura *****/
 //------------------------------------------------------------------------------
-        void initTextura(String rutaFichero){
+        void initTextura(const string& rutaTextura){
             pixmap = new Pixmap();
 
-            if(modoTextura == 1)
-                pixmap->cargaBMP("./iconoMaderaTaco.bmp");
+            //if(modoTextura == 1)
+            pixmap->cargaBMP(rutaTextura);
 
             glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 

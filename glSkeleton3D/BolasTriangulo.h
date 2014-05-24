@@ -59,9 +59,9 @@ class BolasTriangulo  : public ObjetoCompuesto3D
                 a->escalacion(diametro/2,diametro/2,diametro/2);
                 a->traslacion(x+diametro*posBola+diametro*fila/2,y,z+diametro*fila);
                 int textura = i % 2;
-                bolaBillar = new Esfera(a,textura);
+                bolaBillar = textura == 0 ? new Esfera(a,"./bolas.bmp"): new Esfera(a,"./bolasEnteras.bmp");
                 if(i == 10) bolaBillar->setColor(0.0,0.0,0.0);
-                else bolaBillar->setColor(0.4,0.0,1);
+                else bolaBillar->setColor(0.8,0.8,0.8);
                 objetos->ponElem(bolaBillar);
 
                 if(i == 14){

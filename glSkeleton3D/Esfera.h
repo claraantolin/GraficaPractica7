@@ -30,7 +30,7 @@ class Esfera  : public ObjetoCuadrico
 
         };
 
-        Esfera(TAfin* a, int textura):ObjetoCuadrico(a, textura){
+        Esfera(TAfin* a, const string& rutaTextura ):ObjetoCuadrico(a, rutaTextura){
                 esfera = gluNewQuadric();
                 gluQuadricDrawStyle(esfera, GLU_FILL);
                 color = new Color(1,1,1);
