@@ -291,7 +291,7 @@ class Malla : public Objeto3D
             return matriz;
         }
 //------------------------------------------------------------------------------
-                        /***** setTextura *****/
+                        /***** initTextura *****/
 //------------------------------------------------------------------------------
         void initTextura(String rutaFichero){
             pixmap = new Pixmap();

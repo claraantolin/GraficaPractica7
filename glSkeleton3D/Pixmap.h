@@ -42,16 +42,10 @@ class Pixmap{
                 colorRGBA* getBMP(){return pixmap;};
                 colorY* getLuminancia(){return luminanciaPixmap;};
                 void bufferToPixmap(int width, int height, GLfloat x, GLfloat y);
-                void drawArbol(GLfloat x, GLfloat y);
-                void printPantTree(int width, int height, GLfloat x, GLfloat y);
                 void guardaBMP();
                 bool cargaBMP(const string& arch);
                 void drawBMP(GLfloat x, GLfloat y);
-                void mediaPonderada(Pixmap* imagenAuxiliar, GLdouble factorK);
-                void diferencia(Pixmap* imagenAuxiliar);
-                void rotacion(GLdouble angulo, GLdouble puntoOrigenX, GLdouble puntoOrigenY);
-                void suavizadoGaussiano();
-                void sobel();
+
 };
 
 

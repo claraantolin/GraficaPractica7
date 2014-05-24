@@ -29,10 +29,10 @@ class Taco  : public ObjetoCompuesto3D
             color = new Color(1,1,1);
 
             TAfin* aPalo = new TAfin();
-            Objeto3D* paloBillar = new Cilindro(aPalo,0.1,0.5,7,30,20);
+            Objeto3D* paloBillar = new Cilindro(aPalo,0.1,0.5,7,30,20,1);
             aPalo->traslacion(10,6,0);
             aPalo->escalacion(0.5,0.5,0.5);
-            paloBillar->setColor(0.5,0.4,0.3);
+            paloBillar->setColor(1,1,1);
 
             TAfin* aMangoPalo = new TAfin();
             Objeto3D* mangoPaloBillar = new Cilindro(aMangoPalo,0.5,0.7,5,30,20);

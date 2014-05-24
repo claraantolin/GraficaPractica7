@@ -46,6 +46,17 @@ class Cilindro  : public ObjetoCuadrico
                 this->stacks = stacks;
         };
 
+         Cilindro(TAfin* a, GLdouble base, GLdouble top, GLdouble height, GLint slices, GLint stacks, int modoTextura):ObjetoCuadrico(a, modoTextura){
+                cilindro = gluNewQuadric();
+                gluQuadricDrawStyle(cilindro, GLU_FILL);
+                color = new Color(1,1,1);
+
+                this->base = base;
+                this->top = top;
+                this->height = height;
+                this->slices = slices;
+                this->stacks = stacks;
+        };
 
         ~Cilindro(){ }
 
@@ -53,8 +64,17 @@ class Cilindro  : public ObjetoCuadrico
             glPushMatrix();
                 glMultMatrixf(tAfin->getMatriz());
 
+                glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                gluQuadricTexture(cilindro, true);
+                glBindTexture(GL_TEXTURE_2D, texName);
                 glColor3f(color->getR(),color->getG(),color->getB());
                 gluCylinder(cilindro, base, top,  height, slices, stacks);
+
+                glDisable(GL_TEXTURE_2D);
+
+                //
+                //gluCylinder(cilindro, base, top,  height, slices, stacks);
             glPopMatrix();
         }
 
