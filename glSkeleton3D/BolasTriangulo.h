@@ -58,7 +58,8 @@ class BolasTriangulo  : public ObjetoCompuesto3D
                 TAfin* a = new TAfin();
                 a->escalacion(diametro/2,diametro/2,diametro/2);
                 a->traslacion(x+diametro*posBola+diametro*fila/2,y,z+diametro*fila);
-                bolaBillar = new Esfera(a);
+                int textura = i % 2;
+                bolaBillar = new Esfera(a,textura);
                 if(i == 10) bolaBillar->setColor(0.0,0.0,0.0);
                 else bolaBillar->setColor(0.4,0.0,1);
                 objetos->ponElem(bolaBillar);
@@ -69,7 +70,6 @@ class BolasTriangulo  : public ObjetoCompuesto3D
                     a->escalacion(diametro/2,diametro/2,diametro/2);
                     a->traslacion(x+diametro*posBola+diametro*fila/2,y,z+diametro*fila + 2);
                     bolaBillarBlanca = new Esfera(a);
-                    if(i == 10) bolaBillarBlanca->setColor(1.0,1.0,1.0);
                     objetos->ponElem(bolaBillarBlanca);
                 }
                 posBola++;
